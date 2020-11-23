@@ -22,16 +22,16 @@ Download a release from the releases tab for your OS architecture and unzip to a
 Alternatively if you have a Golang dev environment you can build locally with `make build`.
 
 ## Usage
-The following command will analyze the EBS snapshots in the `digital-public-cloudops` account and output the snapshot info and cost results to two files `digital-public-cloudops-snapshots.csv` and `digital-public-cloudops-bars.csv` respectively. It will only look at snapshots that were created before `2019-01-01`. It will paginate snapshot results up to 20 pages with a page size of 750 (the max is 1000). 
+The following command will analyze the EBS snapshots in the `dev-sandbox` account and output the snapshot info and cost results to two files `dev-sandbox-snapshots.csv` and `dev-sandbox-bars.csv` respectively. It will only look at snapshots that were created before `2019-01-01`. It will paginate snapshot results up to 20 pages with a page size of 750 (the max is 1000). 
 
 ```
-$ ACCOUNT=digital-public-cloudops bash -c './panner -max-pages 20 -pagesize 750 -datefilter 2019-01-01 -profile $ACCOUNT -outfile-snapshots $ACCOUNT-snapshots.csv -outfile-bars $ACCOUNT-bars.csv -outfile-summary $ACCOUNT-summary.txt'
+$ ACCOUNT=dev-sandbox bash -c './panner -max-pages 20 -pagesize 750 -datefilter 2019-01-01 -profile $ACCOUNT -outfile-snapshots $ACCOUNT-snapshots.csv -outfile-bars $ACCOUNT-bars.csv -outfile-summary $ACCOUNT-summary.txt'
 ```
 
 sample output:
 ```
 t=2020-08-13T01:34:10-0400 lvl=info msg="Starting panner"
-t=2020-08-13T01:34:10-0400 lvl=info msg="starting session" profile=digital-public-cloudops
+t=2020-08-13T01:34:10-0400 lvl=info msg="starting session" profile=dev-sandbox
 t=2020-08-13T01:34:11-0400 lvl=info msg="Filtered snapshots page by date" pre-filter=13 post-filter=10 pageNum=1
 t=2020-08-13T01:34:11-0400 lvl=info msg="searching for batch of volumes" size=8
 t=2020-08-13T01:34:11-0400 lvl=info msg="Waiting for describeVolume batches to finish"
@@ -39,10 +39,10 @@ t=2020-08-13T01:34:14-0400 lvl=info msg="Total snapshots post date filter" snaps
 t=2020-08-13T01:34:14-0400 lvl=info msg="Total snapshots analyzed" total-analyzed=13
 t=2020-08-13T01:34:14-0400 lvl=info msg="grabbing all latest launch template versions"
 t=2020-08-13T01:34:15-0400 lvl=info msg="Writing snapshots to file"
-t=2020-08-13T01:34:15-0400 lvl=info msg="wrote nuggets to file" filename=digital-public-cloudops-snapshots.csv
+t=2020-08-13T01:34:15-0400 lvl=info msg="wrote nuggets to file" filename=dev-sandbox-snapshots.csv
 t=2020-08-13T01:34:15-0400 lvl=info msg="Writing cost info to file"
-t=2020-08-13T01:34:15-0400 lvl=info msg="wrote bars to file" filename=digital-public-cloudops-bars.csv
-t=2020-08-13T01:34:15-0400 lvl=info msg="wrote summary to file" filename=digital-public-cloudops-summary.txt
+t=2020-08-13T01:34:15-0400 lvl=info msg="wrote bars to file" filename=dev-sandbox-bars.csv
+t=2020-08-13T01:34:15-0400 lvl=info msg="wrote summary to file" filename=dev-sandbox-summary.txt
 ```
 
 From there you can look at the summary file and delete the snapshots if you want to realize the savings.  
