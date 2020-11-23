@@ -1,0 +1,7 @@
+*.csv
+*.txt
+notes
+*.log.json
+output*/
+panner
+go.sum
